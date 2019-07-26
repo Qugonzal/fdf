@@ -22,6 +22,15 @@ typedef struct	s_info
 	void	*window;
 }		t_info;
 
+int		mouse_move(int button, int x, int y, void *param)
+{
+	ft_putnbr(x);
+	ft_putstr("  ");
+	ft_putnbr(y);
+	ft_putstr("\n");
+	return (0);
+}
+
 int		keypress(int keycode, void *ptr)
 {
 	t_info	*ptrs;
@@ -44,15 +53,6 @@ int		keypress(int keycode, void *ptr)
   		mlx_string_put(ptrs->mlx_ptr,ptrs->window,50,20,0xFF99FF,"String output");
  		mlx_string_put(ptrs->mlx_ptr,ptrs->window,150,40,0x00FFFF,"MinilibX test");
 	}
-	return (0);
-}
-
-int		mouse_move(int x, int y, void *param)
-{
-	ft_putnbr(x);
-	ft_putstr("  ");
-	ft_putnbr(y);
-	ft_putstr("\n");
 	return (0);
 }
 
@@ -93,9 +93,9 @@ int	main(int ac, char **av)
 	}
 	while (++x < 300)
 		mlx_pixel_put(ptrs.mlx_ptr, ptrs.window, x, 250, 0xFFFFFF);
- 	mlx_hook(ptrs.window, MotionNotify, PointerMotionMask, mouse_win3, 0);
+// 	mlx_hook(ptrs.window, MotionNotify, PointerMotionMask, mouse_win3, 0);
 	mlx_key_hook(ptrs.window, keypress, &ptrs);
-	mlx_mouse_hook(ptrs.window, mouse_move, 0);
+	mlx_mouse_hook(ptrs.window, mouse_move, &ptrs);
   	mlx_string_put(ptrs.mlx_ptr,ptrs.window,5,20,0xFF99FF,"String output");
  	mlx_string_put(ptrs.mlx_ptr,ptrs.window,15,40,0x00FFFF,"MinilibX test");
 	mlx_loop(ptrs.mlx_ptr);
