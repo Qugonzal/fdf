@@ -6,7 +6,7 @@
 /*   By: quegonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 17:39:06 by quegonza          #+#    #+#             */
-/*   Updated: 2019/08/20 18:25:09 by quegonza         ###   ########.fr       */
+/*   Updated: 2019/08/21 17:56:07 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	raytracer_q1(int x1, int y1, int x2, int y2, t_info *info)
 			e = e + dx;
 		}
 	}
-	mlx_pixel_put(info->mlx_ptr, info->window, x2, y2, 0xFF0000);
 }
 
 void	raytracer_q2(int x1, int y1, int x2, int y2, t_info *info)
@@ -62,7 +61,6 @@ void	raytracer_q2(int x1, int y1, int x2, int y2, t_info *info)
 			e = e + dy;
 		}
 	}
-	mlx_pixel_put(info->mlx_ptr, info->window, x2, y2, 0xFF0000);
 }
 
 void	raytracer_q7(int x1, int y1, int x2, int y2, t_info *info)
@@ -84,7 +82,6 @@ void	raytracer_q7(int x1, int y1, int x2, int y2, t_info *info)
 			e = e + dy;
 		}
 	}
-	mlx_pixel_put(info->mlx_ptr, info->window, x2, y2, 0xFF0000);
 }
 
 void	raytracer_q8(int x1, int y1, int x2, int y2, t_info *info)
@@ -106,7 +103,90 @@ void	raytracer_q8(int x1, int y1, int x2, int y2, t_info *info)
 			e = e + dx;
 		}
 	}
-	mlx_pixel_put(info->mlx_ptr, info->window, x2, y2, 0xFF0000);
+}
+
+void	raytracer_q4(int x1, int y1, int x2, int y2, t_info *info)
+{
+	int dx;
+	int dy;
+	int e;
+
+	e = x2 - x1;
+	dx = 2 * e;
+	dy = (y2 - y1) * 2;
+	while (x1 >= x2)
+	{
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		x1--;
+		if ((e = e + dy) >= 0)
+		{
+			y1 = y1 + 1;
+			e = e + dx;
+		}
+	}
+}
+
+void	raytracer_q3(int x1, int y1, int x2, int y2, t_info *info)
+{
+	int dx;
+	int dy;
+	int e;
+
+	e = y2 - y1;
+	dx = 2 * (x2 - x1);
+	dy = e * 2;
+	while (y1 <= y2)
+	{
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		y1++;
+		if ((e = e + dx) <= 0)
+		{
+			x1 = x1 - 1;
+			e = e + dy;
+		}
+	}
+}
+
+void	raytracer_q5(int x1, int y1, int x2, int y2, t_info *info)
+{
+	int dx;
+	int dy;
+	int e;
+
+	e = x2 - x1;
+	dx = 2 * e;
+	dy = (y2 - y1) * 2;
+	while (x1 >= x2)
+	{
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		x1--;
+		if ((e = e - dy) >= 0)
+		{
+			y1 = y1 - 1;
+			e = e + dx;
+		}
+	}
+}
+
+void	raytracer_q6(int x1, int y1, int x2, int y2, t_info *info)
+{
+	int dx;
+	int dy;
+	int e;
+
+	e = y2 - y1;
+	dx = 2 * (x2 - x1);
+	dy = e * 2;
+	while (y1 >= y2)
+	{
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		y1--;
+		if ((e = e - dx) >= 0)
+		{
+			x1 = x1 - 1;
+			e = e + dy;
+		}
+	}
 }
 
 void	raytracer(int x1, int y1, int x2, int y2, t_info *info)
@@ -142,7 +222,7 @@ void	raytracer(int x1, int y1, int x2, int y2, t_info *info)
 				while (x1 <= x2)
 				{
 					mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
-					x++;
+					x1++;
 				}
 		}
 		else
@@ -163,13 +243,29 @@ void	raytracer(int x1, int y1, int x2, int y2, t_info *info)
 						raytracer_q6(x1, y1, x2, y2, info);
 			}
 			else
-				while (y1 <= y2)
+				while (x1 >= x2)
 				{
 					mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
-					y++;
+					x1--;
 				}
 		}
 	}
+	else
+	{
+		if (dy > 0)
+				while (y1 <= y2)
+			{
+				mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+				y1++;
+			}
+		else
+			while (y1 >= y2)
+			{
+				mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+				y1--;
+			}
+	}
+	mlx_pixel_put(info->mlx_ptr, info->window, x2, y2, 0xFF0000);
 }
 
 int		key_press(int keycode, void *param)
@@ -206,12 +302,22 @@ int		main(int ac, char **av)
 	info.window = mlx_new_window(info.mlx_ptr, 500, 500, "FDF");
 	while (++x < 300)
 		mlx_pixel_put(info.mlx_ptr, info.window, x, 250, 0xFFFFFF);
-	raytracer(50, 50, 80, 60, &info);
-	raytracer(50, 50, 80, 50, &info);
-	raytracer(50, 50, 80, 40, &info);
-	raytracer(50, 50, 60, 80, &info);
-	raytracer(50, 50, 60, 10, &info);
-	raytracer(50, 50, 40, 80, &info);
+	raytracer(50, 50, 50, 10, &info);
+	raytracer(50, 50, 70, 10, &info);
+	raytracer(50, 50, 90, 10, &info);
+	raytracer(50, 50, 90, 30, &info);
+	raytracer(50, 50, 90, 50, &info);
+	raytracer(50, 50, 90, 70, &info);
+	raytracer(50, 50, 90, 90, &info);
+	raytracer(50, 50, 70, 90, &info);
+	raytracer(50, 50, 50, 90, &info);
+	raytracer(50, 50, 30, 90, &info);
+	raytracer(50, 50, 10, 90, &info);
+	raytracer(50, 50, 10, 70, &info);
+	raytracer(50, 50, 10, 50, &info);
+	raytracer(50, 50, 10, 30, &info);
+	raytracer(50, 50, 10, 10, &info);
+	raytracer(50, 50, 30, 10, &info);
 	mlx_hook(info.window, 2, 0, key_press, &info);
 	mlx_hook(info.window, 17, 0, x_close, &info);
 	mlx_hook(info.window, 6, 0, mouse_move, &info);
