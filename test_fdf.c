@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "mlx.h"
+#include "fdf.h"
 #include "libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
