@@ -21,12 +21,12 @@ CLEAN_COLOR = \033[1;36m
 
 NAME = fdf
 CC = gcc
-LFLAGS = -lX11 -lXext -lmlx
+LFLAGS = -lX11 -lXext -lmlx -lm
 CFLAGS = -Wall -Wextra -Werror
 
 #\/\/\/Files
 
-SRC = q_fdf.c \
+SRC = main.c ft_draw_segment.c \
 
 OBJ = $(SRC:.c=.o)
 
