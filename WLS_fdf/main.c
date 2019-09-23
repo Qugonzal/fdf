@@ -186,6 +186,22 @@ int		keypress(int keycode, void *ptr_info)
 			mlx_string_put(info->mlx_ptr,info->window,15,40,info->color,"MinilibX test");
 		}
 	}
+	if (keycode == 'd')
+	{
+		info->color = 0x000000;
+		ft_displaymap_simple(info);
+		info->color = 0xFFFFFF;
+		info->angle -= 1;
+		ft_displaymap_simple(info);
+	}
+	if (keycode == 'e')
+	{
+		info->color = 0x000000;
+		ft_displaymap_simple(info);
+		info->color = 0xFFFFFF;
+		info->angle += 1;
+		ft_displaymap_simple(info);
+	}
 	if (keycode == 65361) // <
 	{
 		info->color = 0x000000;
@@ -248,6 +264,13 @@ int		keypress(int keycode, void *ptr_info)
 	return (0);
 }
 
+void	ft_draw_projection(int x, int y, int xp, int yp, t_info *info)
+{
+	if (info->projection == 0)
+	{
+	}
+}
+
 void	ft_displaymap_simple(t_info *info)
 {
 	int		xp;
@@ -260,16 +283,21 @@ void	ft_displaymap_simple(t_info *info)
 	while (y < info->y_map_size)
 	{
 		x = 0;
-		xp = info->x_first;
+		xp = info->x_first + (y * info->angle);
 		while (x < (info->x_map_size - 1))
 		{
 //mlx_pixel_put(info->mlx_ptr,info->window,xp-map[y][x],yp-map[y][x],0xFFFFFF);
-			draw_segment(xp - info->map[y][x], yp - info->map[y][x], xp + info->zoom - info->map[y][x + 1], yp - info->map[y][x + 1], info);
+			draw_segment(xp - info->map[y][x], yp - info->map[y][x],
+							xp + info->zoom - info->map[y][x + 1],
+							yp - info->angle - info->map[y][x + 1],
+							info);
 			//	ft_putnbr(map[y][x]);
 			xp = xp + info->zoom;
+			yp = yp - info->angle;
 			x++;
 		}
-		yp = yp + info->zoom;
+		yp = yp + info->zoom + (x * info->angle);
+//		xp = xp + info->angle;
 		y++;
 	}
 	x = 0;
@@ -277,16 +305,22 @@ void	ft_displaymap_simple(t_info *info)
 	while (x < info->x_map_size)
 	{
 		y = 0;
-		yp = info->y_first;
+		yp = info->y_first - (x * info->angle);
 		while (y < (info->y_map_size - 1))
 		{
 //mlx_pixel_put(info->mlx_ptr,info->window,xp-map[y][x],yp-map[y][x],0xFFFFFF);
-			draw_segment(xp - info->map[y][x], yp - info->map[y][x], xp - info->map[y + 1][x], yp + info->zoom - info->map[y + 1][x], info);
+			draw_segment(xp - info->map[y][x], yp - info->map[y][x],
+						xp + info->angle - info->map[y + 1][x],
+						yp + info->zoom - info->map[y + 1][x],
+						info);
 			//	ft_putnbr(map[y][x]);
 			yp = yp + info->zoom;
+			xp = xp + info->angle;
+	//		xp = xp + info->angle;
 			y++;
 		}
-		xp = xp + info->zoom;
+		xp = xp + info->zoom - (y * info->angle);
+//		yp = yp + info->angle;
 		x++;
 	}
 }
@@ -312,6 +346,7 @@ int		main(int ac, char **av)
 		ft_putnbr(info.x_map_size);
 		ft_putnbr(info.y_map_size);
 		info.color = 0xFFFFFF;
+		info.angle = 0;
 		info.zoom = 700 / info.x_map_size;
 		info.x_first = 700 / info.x_map_size - 10;
 		info.y_first = 700 / info.y_map_size - 10;
