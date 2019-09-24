@@ -26,7 +26,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 #\/\/\/Files
 
-SRC = main.c ft_draw_segment.c \
+SRC = main.c ft_divers.c ft_draw_segment.c ft_parse_input.c \
+		ft_simple_projection.c ft_keypress.c
 
 OBJ = $(SRC:.c=.o)
 
