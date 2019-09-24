@@ -264,10 +264,11 @@ int		keypress(int keycode, void *ptr_info)
 	return (0);
 }
 
-void	ft_draw_projection(int x, int y, int xp, int yp, t_info *info)
+void	ft_draw_projection(t_info *info)
 {
 	if (info->projection == 0)
 	{
+		ft_displaymap_simple(info);
 	}
 }
 
@@ -350,9 +351,9 @@ int		main(int ac, char **av)
 		info.zoom = 700 / info.x_map_size;
 		info.x_first = 700 / info.x_map_size - 10;
 		info.y_first = 700 / info.y_map_size - 10;
-		ft_displaymap_simple(&info);
 		mlx_key_hook(info.window, keypress, &info);
 	//	ft_free_map(info.map, &info);
+		ft_draw_projection(&info);
 		mlx_loop(info.mlx_ptr);
 	}
 	return (0);

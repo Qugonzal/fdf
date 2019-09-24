@@ -10,6 +10,7 @@ typedef struct	s_info
 	int		**map;
 	int		y_map_size;
 	int		x_map_size;
+	int		projection;
 	int		color;
 	int		zoom;
 	int		angle;
