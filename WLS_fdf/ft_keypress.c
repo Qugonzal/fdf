@@ -1,15 +1,16 @@
 #include "fdf.h"
 
-int		keypress(int keycode, void *ptr_info)
+int		keypress(int keycode, void *ptr)
 {
 	t_info	*info;
-	info = ptr_info;
-	ft_putstr("<((!))> Keycode: ");
+	info = (t_info *)ptr;
+/*	ft_putstr("<((!))> Keycode: ");
 	ft_putnbr(keycode);
 	ft_putstr("\n");
+*/
 	if (keycode == 65307)
 	{
-		//ft_putstr("\n");
+		ft_free_map(info);
 		exit(0);
 	}
 	if (keycode == ' ')

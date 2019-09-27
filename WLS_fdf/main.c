@@ -11,17 +11,22 @@ void	ft_error(char *fonction, void *ptr)
 
 void	ft_free_map(t_info *info)
 {
-	int		**map;
 	int 	y;
 
-	map = info->map;
 	y = 0;
 	while (y < info->y_map_size)
 	{
-			free(map[y]);
+			free(info->map[y]);
 			y++;
 	}
-	free(map);
+	free(info->map);
+	y = 0;
+	while (y < info->y_map_size)
+	{
+			free(info->colors[y]);
+			y++;
+	}
+	free(info->colors);
 }
 
 void	ft_draw_projection(t_info *info)
@@ -57,9 +62,9 @@ int		main(int ac, char **av)
 		info.zoom = 700 / info.x_map_size / 2;
 		info.x_first = 700 / info.x_map_size * 2;
 		info.y_first = 700 / info.y_map_size * 2;
-		mlx_key_hook(info.window, keypress, &info);
 	//	ft_free_map(info.map, &info);
 		ft_draw_projection(&info);
+		mlx_key_hook(info.window, keypress, &info);
 		mlx_loop(info.mlx_ptr);
 	}
 	return (0);
