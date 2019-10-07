@@ -12,7 +12,7 @@ void	draw_segment_q1(int x1, int y1, int x2, int y2, t_info *info)
 	dy = (y2 - y1) * 2;
 	while (x1 <= x2)
 	{
-		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 		x1++;
 		if ((e = e - dy) < 0)
 		{
@@ -33,7 +33,7 @@ void	draw_segment_q2(int x1, int y1, int x2, int y2, t_info *info)
 	dy = 2 * e;
 	while (y1 <= y2)
 	{
-		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 		y1++;
 		if ((e = e - dx) < 0)
 		{
@@ -54,7 +54,7 @@ void	draw_segment_q7(int x1, int y1, int x2, int y2, t_info *info)
 	dy = e * 2;
 	while (y1 >= y2)
 	{
-		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 		y1--;
 		if ((e = e + dx) > 0)
 		{
@@ -75,7 +75,7 @@ void	draw_segment_q8(int x1, int y1, int x2, int y2, t_info *info)
 	dy = (y2 - y1) * 2;
 	while (x1 <= x2)
 	{
-		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 		x1++;
 		if ((e = e + dy) < 0)
 		{
@@ -96,7 +96,7 @@ void	draw_segment_q4(int x1, int y1, int x2, int y2, t_info *info)
 	dy = (y2 - y1) * 2;
 	while (x1 >= x2)
 	{
-		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 		x1--;
 		if ((e = e + dy) >= 0)
 		{
@@ -117,7 +117,7 @@ void	draw_segment_q3(int x1, int y1, int x2, int y2, t_info *info)
 	dy = e * 2;
 	while (y1 <= y2)
 	{
-		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 		y1++;
 		if ((e = e + dx) <= 0)
 		{
@@ -138,7 +138,7 @@ void	draw_segment_q5(int x1, int y1, int x2, int y2, t_info *info)
 	dy = (y2 - y1) * 2;
 	while (x1 >= x2)
 	{
-		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 		x1--;
 		if ((e = e - dy) >= 0)
 		{
@@ -159,7 +159,7 @@ void	draw_segment_q6(int x1, int y1, int x2, int y2, t_info *info)
 	dy = e * 2;
 	while (y1 >= y2)
 	{
-		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+		mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 		y1--;
 		if ((e = e - dx) >= 0)
 		{
@@ -201,7 +201,7 @@ void	draw_segment(int x1, int y1, int x2, int y2, t_info *info)
 			else
 				while (x1 <= x2)
 				{
-					mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+					mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 					x1++;
 				}
 		}
@@ -225,7 +225,7 @@ void	draw_segment(int x1, int y1, int x2, int y2, t_info *info)
 			else
 				while (x1 >= x2)
 				{
-					mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+					mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 					x1--;
 				}
 		}
@@ -235,15 +235,15 @@ void	draw_segment(int x1, int y1, int x2, int y2, t_info *info)
 		if (dy > 0)
 				while (y1 <= y2)
 			{
-				mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+				mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 				y1++;
 			}
 		else
 			while (y1 >= y2)
 			{
-				mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, 0xFFFFFF);
+				mlx_pixel_put(info->mlx_ptr, info->window, x1, y1, info->color);
 				y1--;
 			}
 	}
-	mlx_pixel_put(info->mlx_ptr, info->window, x2, y2, 0xFF0000);
+	mlx_pixel_put(info->mlx_ptr, info->window, x2, y2, info->color);
 }

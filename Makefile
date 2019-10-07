@@ -6,7 +6,7 @@
 #    By: quegonza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/23 20:36:56 by quegonza          #+#    #+#              #
-#    Updated: 2019/07/23 21:26:32 by quegonza         ###   ########.fr        #
+#    Updated: 2019/10/07 18:21:21 by quegonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 #\/\/\/Files
 
-SRC = test_fdf.c \
+SRC = main.c ft_divers.c ft_draw_segment.c ft_parse_input.c \
+		ft_simple_projection.c ft_keypress.c
 
 OBJ = $(SRC:.c=.o)
 
