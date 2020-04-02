@@ -1,9 +1,12 @@
-#include <mlx.h>
+#include "mlx.h"
 #include "libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
-#include <X11/Xlib.h>
+//#include <X11/Xlib.h>
 #include <fcntl.h>
+
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
 
 typedef struct	s_info
 {
