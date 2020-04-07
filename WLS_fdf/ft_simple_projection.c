@@ -15,7 +15,7 @@ void	ft_simple_ylines(t_info *w)
 		yp = w->y_first - (x * w->angle);
 		while (y < (w->y_map_size - 1))
 		{
-			draw_segment(xp - w->map[y][x], yp - w->map[y][x],
+			draw_seg(xp - w->map[y][x], yp - w->map[y][x],
 							xp + w->angle - w->map[y + 1][x],
 							yp + w->zoom - w->map[y + 1][x], w);
 			yp = yp + w->zoom;
@@ -42,7 +42,7 @@ void	ft_simple_xlines(t_info *w)
 		xp = w->x_first + (y * w->angle);
 		while (x < (w->x_map_size - 1))
 		{
-			draw_segment(xp - w->map[y][x], yp - w->map[y][x],
+			draw_seg(xp - w->map[y][x], yp - w->map[y][x],
 							xp + w->zoom - w->map[y][x + 1],
 							yp - w->angle - w->map[y][x + 1], w);
 			xp = xp + w->zoom;

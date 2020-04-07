@@ -27,7 +27,7 @@ CFLAGS = -Wall -Wextra -Werror
 #\/\/\/Files
 
 SRC = main.c ft_divers.c ft_draw_segment.c ft_parse_input.c \
-		ft_simple_projection.c ft_keypress.c
+		ft_keypress.c ft_iso_project.c 
 
 OBJ = $(SRC:.c=.o)
 
@@ -43,7 +43,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make all -C libft
-	$(CC) $(OBJ) $(INC) $(LFLAGS) $(MLX) -o $@
+	$(CC) $(OBJ) $(INC) $(LFLAGS) $(MLX) -fsanitize=address -o $@
 	@echo "$(OK_COLOR)	--- FdF  created! ---	$(NO_COLOR)"
 
 $(OBJ): $(SRC)

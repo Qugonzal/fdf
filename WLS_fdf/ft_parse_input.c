@@ -27,6 +27,7 @@ int		ft_alphex_to_int(char *str)
 	return (res);
 }
 
+/*
 void	ft_fill_colors(char **tab_str, t_info *info, int y)
 {
 	int x;
@@ -44,6 +45,7 @@ void	ft_fill_colors(char **tab_str, t_info *info, int y)
 		}
 	}
 }
+*/
 
 int		*ft_nb_strsplit(char *str, t_info *info, int y)
 {
@@ -51,7 +53,6 @@ int		*ft_nb_strsplit(char *str, t_info *info, int y)
 	int		*tab;
 	int		x;
 
-	ft_putstr("ft_ IN\n");
 	if (!(tab_str = ft_strsplit(str, ' ')))
 		ft_error("ft_strsplit", str);
 	free(str);
@@ -59,9 +60,9 @@ int		*ft_nb_strsplit(char *str, t_info *info, int y)
 	while (tab_str[x])
 		x++;
 	info->x_map_size = x;
-	ft_fill_colors(tab_str, info, y);
+//	ft_fill_colors(tab_str, info, y);
 	if (!(tab = (int *)malloc(sizeof(int) * x)))
-		ft_error("malloc", 0);
+		ft_error("in ft_nb_strsplit: malloc failed", 0);
 	x = 0;
 	while (tab_str[x])
 	{
@@ -79,9 +80,9 @@ void	ft_strtab_to_int(char **tab_str, t_info *info)
 
 	if (!(info->map = (int **)malloc(sizeof(int *) * info->y_map_size)))
 		ft_error("malloc", 0);
-	if (ft_strstr(tab_str[0], ",0x"))
-		if (!(info->colors = (int **)malloc(sizeof(int *) * info->y_map_size)))
-			ft_error("malloc", 0);
+//	if (ft_strstr(tab_str[0], ",0x"))
+//		if (!(info->colors = (int **)malloc(sizeof(int *) * info->y_map_size)))
+//			ft_error("malloc", 0);
 	i = 0;
 	while (i < info->y_map_size)
 	{
@@ -96,13 +97,14 @@ void	ft_strtab_to_int(char **tab_str, t_info *info)
 		}
 		i++;
 	}
+	free(tab_str[i]);
 	free(tab_str);
 }
 
 char 	*ft_read(int fd)
 {
 	int		i;
-	char	buf[5001];
+	char	buf[51];
 	char	*tmp;
 	char	*str;
 
@@ -113,7 +115,7 @@ char 	*ft_read(int fd)
 	}
 	ft_bzero(str, 2);
 	i = 0;
-	while ((i = read(fd, buf, 5000)))
+	while ((i = read(fd, buf, 50)))
 	{
 		if (i == -1)
 		{
@@ -121,7 +123,7 @@ char 	*ft_read(int fd)
 			exit(EXIT_FAILURE);
 		}
 		tmp = str;
-		str = ft_strjoin(str, buf);
+		str = ft_strnjoin(str, buf, i);
 		free(tmp);
 	}
 	return (str);
@@ -157,11 +159,5 @@ int		**ft_parse_input(char *file, t_info *info)
 		y++;
 	info->y_map_size = y;
 	ft_strtab_to_int(tab_str, info);
-/*	while (y >= 0)
-	{
-		free(tab_str[y]);
-		y--;
-	}
-	free(tab_str);*/
 	return (info->map);
 }

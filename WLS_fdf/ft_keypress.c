@@ -4,10 +4,9 @@ int		keypress(int keycode, void *ptr)
 {
 	t_info	*info;
 	info = (t_info *)ptr;
-/*	ft_putstr("<((!))> Keycode: ");
+	ft_putstr("<((!))> Keycode: ");
 	ft_putnbr(keycode);
 	ft_putstr("\n");
-*/
 	if (keycode == 65307)
 	{
 		ft_free_map(info);
@@ -30,12 +29,33 @@ int		keypress(int keycode, void *ptr)
 			mlx_string_put(info->mlx_ptr,info->window,15,40,info->color,"MinilibX test");
 		}
 	}
-	if (keycode == 'd')
+	if (keycode == 'x')
 	{
 		info->color = 0x000000;
 		ft_draw_projection(info);
 		info->color = 0xFFFFFF;
-		info->angle -= 1;
+		if (info->projection == 0 || info->projection == 1)
+			info->projection = 3;
+		else
+			info->projection = 0;
+		ft_draw_projection(info);
+	}
+	if (keycode == 'z')
+	{
+		info->color = 0x000000;
+		ft_draw_projection(info);
+		info->color = 0xFFFFFF;
+		info->zdx += 1;
+		info->zdy += 1 ;
+		ft_draw_projection(info);
+	}
+	if (keycode == 's')
+	{
+		info->color = 0x000000;
+		ft_draw_projection(info);
+		info->color = 0xFFFFFF;
+		info->zdx -= 1;
+		info->zdy -= 1 ;
 		ft_draw_projection(info);
 	}
 	if (keycode == 'e')
@@ -43,7 +63,27 @@ int		keypress(int keycode, void *ptr)
 		info->color = 0x000000;
 		ft_draw_projection(info);
 		info->color = 0xFFFFFF;
-		info->angle += 1;
+		info->dd->angle_x -= 1.0;
+		info->dd->angle_y -= 1.0;
+		info->dd->angle_z -= 1.0;
+		ft_draw_projection(info);
+	}
+	if (keycode == 'd')
+	{
+		info->color = 0x000000;
+		ft_draw_projection(info);
+		info->color = 0xFFFFFF;
+		info->dd->angle_x += 1.0;
+		info->dd->angle_y += 1.0;
+		info->dd->angle_z += 1.0;
+		ft_draw_projection(info);
+	}
+	if (keycode == 65430) // <<
+	{
+		info->color = 0x000000;
+		ft_draw_projection(info);
+		info->color = 0xFFFFFF;
+		info->x_first -= 50;
 		ft_draw_projection(info);
 	}
 	if (keycode == 65361) // <
@@ -54,6 +94,14 @@ int		keypress(int keycode, void *ptr)
 		info->x_first -= 5;
 		ft_draw_projection(info);
 	}
+	if (keycode == 65431) // ^^
+	{
+		info->color = 0x000000;
+		ft_draw_projection(info);
+		info->color = 0xFFFFFF;
+		info->y_first -= 50;
+		ft_draw_projection(info);
+	}
 	if (keycode == 65362) // ^
 	{
 		info->color = 0x000000;
@@ -62,12 +110,28 @@ int		keypress(int keycode, void *ptr)
 		info->y_first -= 5;
 		ft_draw_projection(info);
 	}
+	if (keycode == 65432) // >>
+	{
+		info->color = 0x000000;
+		ft_draw_projection(info);
+		info->color = 0xFFFFFF;
+		info->x_first += 50;
+		ft_draw_projection(info);
+	}
 	if (keycode == 65363) // >
 	{
 		info->color = 0x000000;
 		ft_draw_projection(info);
 		info->color = 0xFFFFFF;
 		info->x_first += 5;
+		ft_draw_projection(info);
+	}
+	if (keycode == 65433) // vv
+	{
+		info->color = 0x000000;
+		ft_draw_projection(info);
+		info->color = 0xFFFFFF;
+		info->y_first += 50;
 		ft_draw_projection(info);
 	}
 	if (keycode == 65364) // v
