@@ -1,5 +1,4 @@
-#include "mlx.h"
-#include "fdf.h"
+#include "../inc/fdf.h"
 
 void	draw_segment_q1(int x1, int y1, int x2, int y2, t_info *info)
 {

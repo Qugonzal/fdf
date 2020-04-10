@@ -1,5 +1,4 @@
-#include "mlx.h"
-#include "fdf.h"
+#include "../inc/fdf.h"
 
 void	ft_error(char *fonction, void *ptr)
 {

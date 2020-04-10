@@ -1,4 +1,4 @@
-#include "fdf.h"
+#include "../inc/fdf.h"
 
 int		ft_xp(int x, int y, t_info *w)
 {

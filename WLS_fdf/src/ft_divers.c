@@ -1,4 +1,4 @@
-#include "fdf.h"
+#include "../inc/fdf.h"
 
 void	ft_display_coolstar(int x, int y, t_info *info)
 {

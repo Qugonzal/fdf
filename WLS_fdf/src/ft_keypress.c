@@ -1,4 +1,4 @@
-#include "fdf.h"
+#include "../inc/fdf.h"
 
 int		keypress(int keycode, void *ptr)
 {

@@ -1,10 +1,13 @@
-#include "mlx.h"
-#include "libft/libft.h"
-#include <unistd.h>
-#include <stdlib.h>
+#ifndef FDF_H
+# define FDF_H
+
+# include "mlx.h"
+# include "libft/libft.h"
+# include <unistd.h>
+# include <stdlib.h>
 //#include <X11/Xlib.h>
-#include <fcntl.h>
-#include <math.h>
+# include <fcntl.h>
+# include <math.h>
 
 # define WIN_W 1000
 # define WIN_H 800
@@ -48,6 +51,7 @@ typedef struct	s_coor
 	int y2;
 }				t_coor;
 
+
 void	draw_segment_q1(int x1, int y1, int x2, int y2, t_info *info);
 void	draw_segment_q2(int x1, int y1, int x2, int y2, t_info *info);
 void	draw_segment_q3(int x1, int y1, int x2, int y2, t_info *info);
@@ -60,11 +64,15 @@ void	draw_segment_q8(int x1, int y1, int x2, int y2, t_info *info);
 void	ft_iso_project(t_info *w);
 void	ft_para_project(t_info *w);
 
-void	draw_seg(int x1, int y1, int x2, int y2, t_info *info);
+int		**ft_parse_input(char *file, t_info *info);
 int		keypress(int keycode, void *ptr);
+
+void	draw_seg(int x1, int y1, int x2, int y2, t_info *info);
 void	ft_display_coolstar(int x, int y, t_info *info);
 void	ft_free_map(t_info *info);
-int		**ft_parse_input(char *file, t_info *info);
 void	ft_draw_projection(t_info *info);
 void	ft_displaymap_simple(t_info *info);
 void	ft_error(char *fonction, void *ptr);
+
+
+# endif

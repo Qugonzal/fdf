@@ -1,4 +1,4 @@
-#include "fdf.h"
+#include "../inc/fdf.h"
 
 int		ft_hexadigit(char c)
 {
@@ -60,6 +60,7 @@ int		*ft_nb_strsplit(char *str, t_info *info, int y)
 	while (tab_str[x])
 		x++;
 	info->x_map_size = x;
+	(void)y;
 //	ft_fill_colors(tab_str, info, y);
 	if (!(tab = (int *)malloc(sizeof(int) * x)))
 		ft_error("in ft_nb_strsplit: malloc failed", 0);

@@ -25,13 +25,16 @@ LFLAGS = -lX11 -lXext -lm
 CFLAGS = -Wall -Wextra -Werror
 
 #\/\/\/Files
+SRCDIR = src
+SRC = main.c $(addprefix ft_, $(addsuffix .c, \
+		divers draw_segment parse_input \
+		keypress iso_project))
 
-SRC = main.c ft_divers.c ft_draw_segment.c ft_parse_input.c \
-		ft_keypress.c ft_iso_project.c 
+OBJDIR = obj
+OBJ = $(patsubst %.c, %.o, $(SRC))
+OBJECTS = $(addprefix $(OBJDIR)/, $(OBJ))
 
-OBJ = $(SRC:.c=.o)
-
-INC = -I ./libft/ -L ./libft -lft
+INC = -I ./inc/libft/ -L ./inc/libft -lft
 
 MLX= /usr/include/mlx.h /usr/lib/X11/libmlx.a
 
@@ -41,25 +44,28 @@ MLX= /usr/include/mlx.h /usr/lib/X11/libmlx.a
 
 all: $(NAME) 
 
-$(NAME): $(OBJ)
-	@make all -C libft
-	$(CC) $(OBJ) $(INC) $(LFLAGS) $(MLX) -fsanitize=address -o $@
-	@echo "$(OK_COLOR)	--- FdF  created! ---	$(NO_COLOR)"
+$(NAME): $(OBJECTS) inc/fdf.h Makefile
+	@make all -C inc/libft
+	$(CC) $(OBJECTS) $(INC) $(CFLAGS) $(LFLAGS) $(MLX) -o $@
+	@echo "$(OK_COLOR)			+\\\\\\| FdF created! |///+	$(NO_COLOR)"
 
-$(OBJ): $(SRC)
-	$(CC) -c $(SRC)
-	@echo "$(OK_COLOR)	--- " .o "   created ---	$(NO_COLOR)"
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(OBJDIR)
+	@$(CC) -c $< -o $@
+	@echo "$(OK_COLOR)	+++ " $@ "   created +++	$(NO_COLOR)"
 
 norme:
 	@norminette $(SRC) $(INC)
 clean:
-	rm -rf $(OBJ)
-	@make clean -C libft
-	@echo "$(CLEAN_COLOR)	--- " .o "   deleted ---		$(NO_COLOR)"
+	@rm -rf $(OBJDIR)
+	@make clean -C inc/libft
+	@echo "$(CLEAN_COLOR)	--- $(NAME) object files deleted ---		$(NO_COLOR)"
 	
-fclean: clean
-	@make fclean -C libft
-	rm -rf $(NAME)
-	@echo "$(CLEAN_COLOR)	--- Program  deleted ---		$(NO_COLOR)"
+fclean: 
+	@rm -rf $(OBJDIR)
+	@echo "$(CLEAN_COLOR)	--- $(NAME) object files deleted ---		$(NO_COLOR)"
+	@make fclean -C inc/libft
+	@rm -rf $(NAME)
+	@echo "$(CLEAN_COLOR)	--- $(NAME)  deleted ---		$(NO_COLOR)"
 
 re: fclean all
