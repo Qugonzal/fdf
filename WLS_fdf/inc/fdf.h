@@ -1,16 +1,16 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include "mlx.h"
+# include <mlx.h>
 # include "libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
-//#include <X11/Xlib.h>
 # include <fcntl.h>
 # include <math.h>
 
 # define WIN_W 1000
-# define WIN_H 800
+# define WIN_H 600
+# define READ_BUFFSIZE 5000
 # define PI 3.14159265
 
 typedef struct	s_doubles
@@ -64,7 +64,7 @@ void	draw_segment_q8(int x1, int y1, int x2, int y2, t_info *info);
 void	ft_iso_project(t_info *w);
 void	ft_para_project(t_info *w);
 
-int		**ft_parse_input(char *file, t_info *info);
+int		ft_parse_input(char *file, t_info *info);
 int		keypress(int keycode, void *ptr);
 
 void	draw_seg(int x1, int y1, int x2, int y2, t_info *info);

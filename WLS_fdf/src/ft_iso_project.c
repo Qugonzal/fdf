@@ -14,10 +14,12 @@ void	ft_ylines(t_info *w)
 {
 	int		x;
 	int		y;
-	int		xp1;
+/*
+int		xp1;
 	int		xp2;
 	int		yp1;
 	int		yp2;
+	*/
 
 	x = 0;
 	while (x < w->x_map_size)
@@ -25,15 +27,17 @@ void	ft_ylines(t_info *w)
 		y = 0;
 		while (y < (w->y_map_size - 1))
 		{
-			xp1 = ft_xp(x, y, w);
+/*
+xp1 = ft_xp(x, y, w);
 			xp2 = ft_xp(x, y + 1, w);
 			yp1 = ft_yp(x, y, w);
 			yp2 = ft_yp(x, y + 1, w);
 			if (0 <= xp1 <= WIN_W && 0 <= xp2 <= WIN_W &&
 					0 <= yp1 <= WIN_H && 0 <= yp2 <= WIN_H)
 				draw_seg(xp1, yp1, xp2, yp2, w);
-		/*	draw_seg(ft_xp(x, y, w), ft_yp(x, y, w),
-						ft_xp(x, y + 1, w), ft_yp(x, y + 1, w), w);*/
+				*/
+			draw_seg(ft_xp(x, y, w), ft_yp(x, y, w),
+						ft_xp(x, y + 1, w), ft_yp(x, y + 1, w), w);
 			y++;
 		}
 		x++;
@@ -44,10 +48,12 @@ void	ft_xlines(t_info *w)
 {
 	int		x;
 	int		y;
-	int		xp1;
+/*
+int		xp1;
 	int		xp2;
 	int		yp1;
 	int		yp2;
+	*/
 
 	y = 0;
 	while (y < w->y_map_size)
@@ -55,15 +61,17 @@ void	ft_xlines(t_info *w)
 		x = 0;
 		while (x < (w->x_map_size - 1))
 		{
-			xp1 = ft_xp(x, y, w);
+/*
+xp1 = ft_xp(x, y, w);
 			xp2 = ft_xp(x + 1, y, w);
 			yp1 = ft_yp(x, y, w);
 			yp2 = ft_yp(x + 1, y, w);
 			if (0 <= xp1 <= WIN_W && 0 <= xp2 <= WIN_W &&
 					0 <= yp1 <= WIN_H && 0 <= yp2 <= WIN_H)
 				draw_seg(xp1, yp1, xp2, yp2, w);
-		/*draw_seg(ft_xp(x, y, w), ft_yp(x, y, w),
-						ft_xp(x + 1, y, w), ft_yp(x + 1, y, w), w);*/
+				*/
+		draw_seg(ft_xp(x, y, w), ft_yp(x, y, w),
+						ft_xp(x + 1, y, w), ft_yp(x + 1, y, w), w);
 			x++;
 		}
 		y++;

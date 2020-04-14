@@ -21,12 +21,6 @@ void	ft_free_map(t_info *info)
 	}
 	free(info->map);
 	y = 0;
-//	while (y < info->y_map_size)
-//	{
-//			free(info->colors[y]);
-//			y++;
-//	}
-//	free(info->colors);
 }
 
 void	ft_draw_projection(t_info *info)
@@ -44,9 +38,8 @@ void	ft_draw_projection(t_info *info)
 void	ft_init_info(t_info *info)
 {
 		info->color = 0xFFFFFF;
-		info->zoom = 20;
+		info->zoom = WIN_W / info->x_map_size;
 		(info->dd->pi) = PI / 180;
-//		info->zoom = 700 / info->x_map_size / 2;
 		info->x_first = WIN_W / info->x_map_size;
 		info->y_first = WIN_H / info->y_map_size;
 		info->projection = 3;
@@ -67,7 +60,10 @@ int		main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		info.map = ft_parse_input(av[1], &info);
+		info.x_map_size = 0;
+		info.y_map_size = 0;
+		if (!ft_parse_input(av[1], &info))
+			return (0);
 		if (!(info.mlx_ptr = mlx_init()))
 		{
 			ft_putstr("mlx_init returned 0\n");
@@ -78,22 +74,6 @@ int		main(int ac, char **av)
 			ft_putstr("mlx_new_window returned 0\n");
 			exit(1);
 		}
-/*	// DEBUG
-		int y= 0;
-		while (y<info.y_map_size)
-		{
-			
-			int x = 0;
-			while (x<info.x_map_size)
-			{
-				ft_putnbr(info.map[y][x]);
-				ft_putstr(" ");
-				x++;
-			}
-			ft_putstr("\n");
-			y++;
-		}
-*/	// DEBUG
 		ft_init_info(&info);
 		ft_draw_projection(&info);
 		mlx_key_hook(info.window, keypress, &info);

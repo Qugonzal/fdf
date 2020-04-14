@@ -47,81 +47,27 @@ void	ft_fill_colors(char **tab_str, t_info *info, int y)
 }
 */
 
-int		*ft_nb_strsplit(char *str, t_info *info, int y)
-{
-	char	**tab_str;
-	int		*tab;
-	int		x;
-
-	if (!(tab_str = ft_strsplit(str, ' ')))
-		ft_error("ft_strsplit", str);
-	free(str);
-	x = 0;
-	while (tab_str[x])
-		x++;
-	info->x_map_size = x;
-	(void)y;
-//	ft_fill_colors(tab_str, info, y);
-	if (!(tab = (int *)malloc(sizeof(int) * x)))
-		ft_error("in ft_nb_strsplit: malloc failed", 0);
-	x = 0;
-	while (tab_str[x])
-	{
-		tab[x] = ft_atoi(tab_str[x]);
-		free(tab_str[x]);
-		x++;
-	}
-	free(tab_str);
-	return (tab);
-}
-
-void	ft_strtab_to_int(char **tab_str, t_info *info)
-{
-	int		i;
-
-	if (!(info->map = (int **)malloc(sizeof(int *) * info->y_map_size)))
-		ft_error("malloc", 0);
-//	if (ft_strstr(tab_str[0], ",0x"))
-//		if (!(info->colors = (int **)malloc(sizeof(int *) * info->y_map_size)))
-//			ft_error("malloc", 0);
-	i = 0;
-	while (i < info->y_map_size)
-	{
-		if (!(info->map[i] = ft_nb_strsplit(tab_str[i], info, i)))
-		{
-			while (--i >= 0)
-				free(info->map[i]);
-			while (i <= info->y_map_size)
-				free(tab_str[i]);
-			free(tab_str);
-			ft_error("ft_nb_strsplit", info->map);
-		}
-		i++;
-	}
-	free(tab_str[i]);
-	free(tab_str);
-}
-
 char 	*ft_read(int fd)
 {
 	int		i;
-	char	buf[51];
+	char	buf[READ_BUFFSIZE + 1];
 	char	*tmp;
 	char	*str;
 
-	if (!(str = (char *)malloc(sizeof(char) + 1)))
+	if (!(str = (char *)malloc(sizeof(char))))
 	{
-		ft_putstr("malloc returned NULL\n");
-		exit(-1);
+		ft_putstr("error: malloc() returned NULL\n");
+		return (NULL);
 	}
-	ft_bzero(str, 2);
+	str[0] = '\0';
 	i = 0;
-	while ((i = read(fd, buf, 50)))
+	while ((i = read(fd, buf, READ_BUFFSIZE)))
 	{
 		if (i == -1)
 		{
-			ft_putstr("read returned -1\n");
-			exit(EXIT_FAILURE);
+			ft_putstr("FdF can't read this file: read() returned -1\n");
+			free(str);
+			return (NULL);
 		}
 		tmp = str;
 		str = ft_strnjoin(str, buf, i);
@@ -137,28 +83,159 @@ char	*ft_open_read(char *file)
 
 	if ((fd = open(file, O_RDONLY)) == -1)
 	{
-		ft_putstr("open returned -1\n");
-		exit(-1);
+		ft_putstr("FdF can't open this file: open() returned -1\n");
+		return (NULL);
 	}
-	str = ft_read(fd);
+	if (!(str = ft_read(fd)))
+		return (NULL);
 	close(fd);
 	return (str);
 }
 
-int		**ft_parse_input(char *file, t_info *info)
+void	ft_fill_tab(char *str, t_info *info)
 {
-	int		y;
+	int x;
+	int i;
+	int y;
+
+	x = 0;
+	i = 0;
+	y = 0;
+	while ((y < info->y_map_size) && str[i])
+	{
+		while (str[i] == ' ')
+			i++;
+		info->map[y][x] = ft_atoi(&str[i]);
+		x++;
+		while ((str[i] != ' ' && str[i] != '\n') && str[i])
+			i++;
+		while (str[i] == ' ')
+			i++;
+		if (str[i] == '\n' || !str[i])
+		{
+			y++;
+			x = 0;
+			i++;
+		}
+	}
+}
+
+int		ft_str_to_tab(char *str, t_info *info)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	if (!(info->map = (int **)malloc(sizeof(int *) * info->y_map_size)))
+	{
+		ft_putstr("error: malloc() returned NULL\n");
+		return (0);
+	}
+	while (y < info->y_map_size)
+	{
+		if (!(info->map[y] = (int *)malloc(sizeof(int) * info->x_map_size)))
+		{
+			y--;
+			while (y != -1)
+				free(info->map[y]);
+			free(info->map);
+			ft_putstr("error: malloc() returned NULL\n");
+			return (0);
+		}
+		y++;
+	}
+	ft_fill_tab(str, info);
+	return (1);
+}
+
+int		ft_fill_x_map_size(int xt, t_info *info)
+{
+	if (!(info->y_map_size))
+	{
+		return (0);
+	}
+	if (!xt)
+	{
+		return (0);
+	}
+	info->x_map_size = xt;
+	return (1);
+}
+
+int		ft_check_input_loop(int *i1, int *xt, char *str, t_info *info)
+{
+	int i;
+
+	i = *i1;
+	if (('9' < str[i] || str[i] < '0') && str[i] != '\n')
+		return (ft_fill_x_map_size(*xt, info));
+	if ('0' <= str[i] && str[i] <= '9')
+	{
+		info->x_map_size++;
+		while ((str[i] != ' ' && str[i] != '\n') && str[i])
+			i++;
+	}
+	if (str[i] == '\n' || !str[i])
+	{
+		if (*xt)
+			if (*xt != info->x_map_size)
+				return (0);
+		*xt = info->x_map_size;
+		info->x_map_size = 0;
+		info->y_map_size++;
+		if (!str[i] || !str[i + 1])
+			return (ft_fill_x_map_size(*xt, info));
+		i++;
+	}
+	*i1 = i;
+	return (2);
+}
+
+int		ft_check_input(char *str, t_info *info)
+{
+	int		i;
+	int		chk;
+	int		xt;
+
+	i = 0;
+	xt = 0;
+	while (str[i])
+	{
+		while (str[i] == ' ' || str[i] == '-')
+		{
+			i++;
+		}
+		if ((chk = ft_check_input_loop(&i, &xt, str, info)) != 2)
+			return (chk);
+		while (str[i] == ' ' || str[i] == '-')
+		{
+			i++;
+		}
+	}
+	return (0);
+}
+
+int		ft_parse_input(char *file, t_info *info)
+{
 	char	*str;
 	char	**tab_str;
 
-	str = ft_open_read(file);
-	if (!(tab_str = ft_strsplit(str, '\n')))
-		ft_error("ft_strsplit", 0);
+	if (!(str = ft_open_read(file)))
+	{
+		ft_putstr("FdF: Error while readding file\n");
+		return (0);
+	}
+	if (!ft_check_input(str, info))
+	{
+		ft_putstr("FdF: Error in file format\n");
+		return (0);
+	}
+	if (!(ft_str_to_tab(str, info)))
+	{
+		ft_putstr("FdF: ft_str_to_tab returned 0\n");
+		return (0);
+	}
 	free(str);
-	y = 0;
-	while (tab_str[y])
-		y++;
-	info->y_map_size = y;
-	ft_strtab_to_int(tab_str, info);
-	return (info->map);
+	return (1);
 }

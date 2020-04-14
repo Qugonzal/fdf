@@ -11,14 +11,12 @@
 # **************************************************************************** #
 
 #\/\/\/Colours
-
 NO_COLOR = \033[0m
 WAIT_COLOR = \033[1;33m
 OK_COLOR = \033[1;32m
 CLEAN_COLOR = \033[1;36m
 
 #\/\/\/Compiliation
-
 NAME = fdf
 CC = gcc
 LFLAGS = -lX11 -lXext -lm
@@ -39,17 +37,16 @@ INC = -I ./inc/libft/ -L ./inc/libft -lft
 MLX= /usr/include/mlx.h /usr/lib/X11/libmlx.a
 
 #\/\/\/Rules
-
 .PHONY: all clean fclean re
 
 all: $(NAME) 
 
-$(NAME): $(OBJECTS) inc/fdf.h Makefile
+$(NAME): $(OBJECTS)
 	@make all -C inc/libft
 	$(CC) $(OBJECTS) $(INC) $(CFLAGS) $(LFLAGS) $(MLX) -o $@
 	@echo "$(OK_COLOR)			+\\\\\\| FdF created! |///+	$(NO_COLOR)"
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c inc/fdf.h Makefile
 	@mkdir -p $(OBJDIR)
 	@$(CC) -c $< -o $@
 	@echo "$(OK_COLOR)	+++ " $@ "   created +++	$(NO_COLOR)"
