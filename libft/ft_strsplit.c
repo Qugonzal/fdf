@@ -6,7 +6,7 @@
 /*   By: quegonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 14:52:36 by quegonza          #+#    #+#             */
-/*   Updated: 2019/04/10 15:53:38 by quegonza         ###   ########.fr       */
+/*   Updated: 2019/04/10 20:07:18 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char		*writeword(char const *s, char c)
 	return (new);
 }
 
-void			ft_free(char **tab, int i)
+static void		ft_free(char **tab, int i)
 {
 	while (--i > -1)
 		free(tab[i]);

@@ -6,11 +6,11 @@
 /*   By: quegonza <quegonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 18:04:27 by quegonza          #+#    #+#             */
-/*   Updated: 2020/04/30 03:39:38 by quegonza         ###   ########.fr       */
+/*   Updated: 2020/05/02 19:05:23 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "../fdf.h"
 
 void	ft_draw_seg_dx(int dx, int dy, t_info *in)
 {

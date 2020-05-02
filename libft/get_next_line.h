@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quegonza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qugonzal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/10 14:52:26 by quegonza          #+#    #+#             */
-/*   Updated: 2019/04/10 14:57:24 by quegonza         ###   ########.fr       */
+/*   Created: 2017/06/06 11:01:08 by qugonzal          #+#    #+#             */
+/*   Updated: 2020/04/30 18:26:50 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	ft_putendl(char const *s)
+# include <stdlib.h>
+# include <unistd.h>
+# include "libft.h"
+
+# define BUFF_SIZE 10
+
+int						get_next_line(const int fd, char **line);
+
+typedef struct		s_line
 {
-	int i;
+	char			*s;	
+}					t_line;
 
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
-	ft_putchar('\n');
-}
+#endif

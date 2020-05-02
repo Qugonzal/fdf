@@ -6,11 +6,11 @@
 /*   By: quegonza <quegonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 18:04:31 by quegonza          #+#    #+#             */
-/*   Updated: 2020/04/29 18:21:12 by quegonza         ###   ########.fr       */
+/*   Updated: 2020/05/02 19:05:56 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "../fdf.h"
 
 /*
 ** Increase the 'zoom' by increasing the basic unit of each axis.

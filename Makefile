@@ -6,7 +6,7 @@
 #    By: quegonza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/23 20:36:56 by quegonza          #+#    #+#              #
-#    Updated: 2020/04/30 03:54:30 by quegonza         ###   ########.fr        #
+#    Updated: 2020/05/02 19:10:54 by quegonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJDIR = obj
 OBJ = $(patsubst %.c, %.o, $(SRC))
 OBJECTS = $(addprefix $(OBJDIR)/, $(OBJ))
 
-INC = -I ./inc/libft/ -L ./inc/libft -lft
+INC = -I ./libft/ -L ./libft -lft
 
 MLX= /usr/include/mlx.h /usr/lib/X11/libmlx.a
 
@@ -45,11 +45,11 @@ MLX= /usr/include/mlx.h /usr/lib/X11/libmlx.a
 all: $(NAME) 
 
 $(NAME): $(OBJECTS)
-	@make all -C inc/libft
+	@make all -C libft
 	$(CC) $(OBJECTS) $(INC) $(CFLAGS) $(LFLAGS) $(MLX) -o $@
 	@echo "$(OK_COLOR)			+\\\\\\| FdF created! |///+	$(NO_COLOR)"
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c inc/fdf.h Makefile
+$(OBJDIR)/%.o: $(SRCDIR)/%.c fdf.h Makefile
 	@mkdir -p $(OBJDIR)
 	@$(CC) -c $< -o $@
 	@echo "$(OK_COLOR)	+++ " $@ "   created +++	$(NO_COLOR)"
@@ -58,13 +58,13 @@ norme:
 	@norminette $(SRC) $(INC)
 clean:
 	@rm -rf $(OBJDIR)
-	@make clean -C inc/libft
+	@make clean -C libft
 	@echo "$(CLEAN_COLOR)	--- $(NAME) object files deleted ---		$(NO_COLOR)"
 	
 fclean: 
 	@rm -rf $(OBJDIR)
 	@echo "$(CLEAN_COLOR)	--- $(NAME) object files deleted ---		$(NO_COLOR)"
-	@make fclean -C inc/libft
+	@make fclean -C libft
 	@rm -rf $(NAME)
 	@echo "$(CLEAN_COLOR)	--- $(NAME)  deleted ---		$(NO_COLOR)"
 

@@ -6,11 +6,11 @@
 /*   By: quegonza <quegonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 18:04:30 by quegonza          #+#    #+#             */
-/*   Updated: 2020/04/30 03:47:20 by quegonza         ###   ########.fr       */
+/*   Updated: 2020/05/02 19:05:46 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "../fdf.h"
 
 /*
 ** Increase or decrease angles of axis

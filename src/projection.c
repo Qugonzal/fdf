@@ -6,11 +6,11 @@
 /*   By: quegonza <quegonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 18:04:34 by quegonza          #+#    #+#             */
-/*   Updated: 2020/04/30 03:52:31 by quegonza         ###   ########.fr       */
+/*   Updated: 2020/05/02 19:06:21 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "../fdf.h"
 
 void	ft_para_project(t_info *w)
 {

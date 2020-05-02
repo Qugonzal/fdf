@@ -6,11 +6,11 @@
 /*   By: quegonza <quegonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 03:51:06 by quegonza          #+#    #+#             */
-/*   Updated: 2020/04/30 03:52:31 by quegonza         ###   ########.fr       */
+/*   Updated: 2020/05/02 19:06:02 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "../fdf.h"
 
 int		ft_xp(int x, int y, t_info *w)
 {

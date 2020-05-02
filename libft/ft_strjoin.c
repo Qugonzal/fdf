@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: quegonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/10 14:52:16 by quegonza          #+#    #+#             */
-/*   Updated: 2019/04/10 15:36:51 by quegonza         ###   ########.fr       */
+/*   Created: 2019/04/10 14:52:26 by quegonza          #+#    #+#             */
+/*   Updated: 2019/04/10 20:05:09 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t			i;
-	unsigned char	*tmp1;
-	unsigned char	*tmp2;
+	char	*new;
+	int		i;
+	int		j;
 
-	i = 0;
-	tmp1 = (unsigned char *)dst;
-	tmp2 = (unsigned char *)src;
-	while (i < n)
+	if (!s1 || !s2)
+		return (NULL);
+	if (!(new = (char *)ft_memalloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+		return (NULL);
+	i = -1;
+	while (s1[++i])
+		new[i] = s1[i];
+	j = -1;
+	while (s2[++j])
 	{
-		tmp1[i] = tmp2[i];
-		if (tmp2[i] == (unsigned char)c)
-			return ((void *)&tmp1[i + 1]);
+		new[i] = s2[j];
 		i++;
 	}
-	return (0);
+	new[i] = '\0';
+	return (new);
 }

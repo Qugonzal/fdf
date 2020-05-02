@@ -6,11 +6,11 @@
 /*   By: quegonza <quegonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 18:04:12 by quegonza          #+#    #+#             */
-/*   Updated: 2020/04/29 19:12:32 by quegonza         ###   ########.fr       */
+/*   Updated: 2020/05/02 19:05:08 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "../fdf.h"
 
 void	draw_segment_q1(t_info *info)
 {

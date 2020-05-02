@@ -6,11 +6,11 @@
 /*   By: quegonza <quegonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 18:04:35 by quegonza          #+#    #+#             */
-/*   Updated: 2020/04/29 18:11:42 by quegonza         ###   ########.fr       */
+/*   Updated: 2020/05/02 19:06:27 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "../fdf.h"
 
 char	*ft_read(int fd)
 {

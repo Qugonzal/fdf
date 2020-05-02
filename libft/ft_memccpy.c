@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: quegonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 14:52:16 by quegonza          #+#    #+#             */
-/*   Updated: 2019/04/10 15:36:51 by quegonza         ###   ########.fr       */
+/*   Updated: 2020/04/30 18:39:27 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	t_list	*new;
-	t_list	*tmp;
+	size_t			i;
+	unsigned char	*tmp1;
+	unsigned char	*tmp2;
 
-	if (!(new = ft_lstnew(f(lst)->content, f(lst)->content_size)))
-		return (NULL);
-	tmp = new;
-	while (lst->next)
+	i = 0;
+	tmp1 = (unsigned char *)dst;
+	tmp2 = (unsigned char *)src;
+	while (i < n)
 	{
-		lst = lst->next;
-		if (!(new->next = ft_lstnew(f(lst)->content, f(lst)->content_size)))
-			return (NULL);
-		new = new->next;
+		tmp1[i] = tmp2[i];
+		if (tmp2[i] == (unsigned char)c)
+			return (&((unsigned char *)dst)[i + 1]);
+		i++;
 	}
-	return (tmp);
+	return (0);
 }

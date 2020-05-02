@@ -6,11 +6,11 @@
 /*   By: quegonza <quegonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 18:04:28 by quegonza          #+#    #+#             */
-/*   Updated: 2020/04/30 03:45:32 by quegonza         ###   ########.fr       */
+/*   Updated: 2020/05/02 19:05:30 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "../fdf.h"
 
 void	ft_help_info(int color, int pos_x, int pos_y, t_info *info)
 {

@@ -6,11 +6,11 @@
 /*   By: quegonza <quegonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 18:04:29 by quegonza          #+#    #+#             */
-/*   Updated: 2020/04/29 18:04:29 by quegonza         ###   ########.fr       */
+/*   Updated: 2020/05/02 19:05:38 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "../fdf.h"
 
 void	ft_keypress_left(int keycode, t_info *info)
 {

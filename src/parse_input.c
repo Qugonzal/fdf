@@ -6,11 +6,11 @@
 /*   By: quegonza <quegonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 18:04:33 by quegonza          #+#    #+#             */
-/*   Updated: 2020/04/29 18:04:33 by quegonza         ###   ########.fr       */
+/*   Updated: 2020/05/02 19:06:14 by quegonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "../fdf.h"
 
 void	ft_fill_tab(char *str, t_info *info)
 {
