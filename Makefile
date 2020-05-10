@@ -19,7 +19,7 @@ CLEAN_COLOR = \033[1;36m
 #\/\/\/Compiliation
 NAME = fdf
 CC = gcc
-LFLAGS = -lX11 -lXext -lm
+LFLAGS = -lmlx -lbsd -lX11 -lXext -lm
 CFLAGS = -Wall -Wextra -Werror
 
 #\/\/\/Files
@@ -35,9 +35,9 @@ OBJDIR = obj
 OBJ = $(patsubst %.c, %.o, $(SRC))
 OBJECTS = $(addprefix $(OBJDIR)/, $(OBJ))
 
-INC = -I ./libft/ -L ./libft -lft
+INC = -I ./libft/ -L./minilibx-linux -L ./libft -lft
 
-MLX= /usr/include/mlx.h /usr/lib/X11/libmlx.a
+MLX= ../minilibx-linux/mlx.h ../minilibx-linux/mlx_int.h
 
 #\/\/\/Rules
 .PHONY: all clean fclean re
@@ -46,26 +46,29 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make all -C libft
-	$(CC) $(OBJECTS) $(INC) $(CFLAGS) $(LFLAGS) $(MLX) -o $@
-	@echo "$(OK_COLOR)			+\\\\\\| FdF created! |///+	$(NO_COLOR)"
+	@make all -C minilibx-linux
+	$(CC) $(OBJECTS) $(INC) $(CFLAGS) $(LFLAGS) -o $@
+	@echo "$(OK_COLOR)     +>| FdF successfully compiled! |<+	$(NO_COLOR)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c fdf.h Makefile
 	@mkdir -p $(OBJDIR)
 	@$(CC) -c $< -o $@
-	@echo "$(OK_COLOR)	+++ " $@ "   created +++	$(NO_COLOR)"
+	@echo "$(OK_COLOR)+++ compiled: " $@ " +++	$(NO_COLOR)"
 
 norme:
 	@norminette $(SRC) $(INC)
 clean:
-	@rm -rf $(OBJDIR)
 	@make clean -C libft
-	@echo "$(CLEAN_COLOR)	--- $(NAME) object files deleted ---		$(NO_COLOR)"
+	@make clean -C minilibx-linux
+	@rm -rf $(OBJDIR)
+	@echo "$(CLEAN_COLOR)--- object files deleted: $(NAME) ---		$(NO_COLOR)"
 	
 fclean: 
-	@rm -rf $(OBJDIR)
-	@echo "$(CLEAN_COLOR)	--- $(NAME) object files deleted ---		$(NO_COLOR)"
 	@make fclean -C libft
+	@make clean -C minilibx-linux
+	@rm -rf $(OBJDIR)
+	@echo "$(CLEAN_COLOR)--- object files deleted: $(NAME) ---		$(NO_COLOR)"
 	@rm -rf $(NAME)
-	@echo "$(CLEAN_COLOR)	--- $(NAME)  deleted ---		$(NO_COLOR)"
+	@echo "$(CLEAN_COLOR)--- bin deleted: $(NAME) ---		$(NO_COLOR)"
 
 re: fclean all

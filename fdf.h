@@ -13,7 +13,8 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include <mlx.h>
+# include "minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx_int.h"
 # include "libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>

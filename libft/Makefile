@@ -41,10 +41,10 @@ $(NAME):
 	@echo "$(OK_COLOR) ++ libft archived ++ $(NO_COLOR)"
 clean:
 	@rm -f $(OBJ)
-	@echo "$(CLEAN_COLOR)- libft object files deleted -$(NO_COLOR)"
+	@echo "$(CLEAN_COLOR) - object files deleted: libft -$(NO_COLOR)"
 fclean: 
 	@rm -f $(OBJ)
-	@echo "$(CLEAN_COLOR)  - libft object files deleted -$(NO_COLOR)"
+	@echo "$(CLEAN_COLOR) - object files deleted: libft -$(NO_COLOR)"
 	@rm -f $(NAME)
-	@echo "$(CLEAN_COLOR) -- libft.a deleted --$(NO_COLOR)"
+	@echo "$(CLEAN_COLOR) -- deleted: $(NAME) --$(NO_COLOR)"
 re: fclean all
