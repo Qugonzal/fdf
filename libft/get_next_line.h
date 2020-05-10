@@ -19,11 +19,11 @@
 
 # define BUFF_SIZE 10
 
-int						get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
 
 typedef struct		s_line
 {
-	char			*s;	
+	char			*s;
 }					t_line;
 
 #endif

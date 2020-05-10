@@ -90,8 +90,8 @@ int		main(int ac, char **av)
 		}
 		ft_init_info(&info);
 		ft_draw_projection(&info);
-		ft_keypress_help('h', &info);
 		mlx_key_hook(info.window, ft_keypress, &info);
+		ft_keypress_help('h', &info);
 		mlx_loop(info.mlx_ptr);
 	}
 	return (0);

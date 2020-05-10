@@ -19,7 +19,7 @@ CLEAN_COLOR = \033[1;36m
 #\/\/\/Compiliation
 NAME = fdf
 CC = gcc
-LFLAGS = -lmlx -lbsd -lX11 -lXext -lm
+LFLAGS = -lmlx -lX11 -lXext -lm
 CFLAGS = -Wall -Wextra -Werror
 
 #\/\/\/Files
