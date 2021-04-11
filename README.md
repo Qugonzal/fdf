@@ -6,7 +6,7 @@
 
 
 ## General info
-FDF (fil de fer) is a project that aims to represent a formated map (see examples in /maps directory) via two different projections (orthogonal or isometric) by linking coordonates given with a simple line (like a grid made of steel wires).
+FDF (fil de fer) is a project that aims to represent a formated map (see examples in /maps directory) via two different projections (orthogonal or isometric) by linking coordinates given with a simple line (like a grid made of steel wires).
 
 ## Prerequisite
 
